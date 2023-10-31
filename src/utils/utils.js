@@ -19,13 +19,12 @@ export function locationsGenerator(data) {
 //   return coordinates;
 //}// devuelve array de arrays con las coordenadas
 
-export const filterGenerator = (filterFields, firesData) => {
+  export const filterGenerator = (filterFields, firesData) => {
     const filterArray = [];
     filterFields.forEach(element => {
-      const filterSet = [...new Set(firesData.map(obj => obj[element])) ];
+      const filterSet = [...new Set(firesData.map(obj => Array.isArray(obj[element]) ? obj[element][0] : obj[element])) ];
       filterArray.push({[element]: filterSet.filter(Boolean)}) 
     });
-  
     return filterArray;
   }
   
