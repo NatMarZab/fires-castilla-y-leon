@@ -1,3 +1,5 @@
+import getDataFromOsMapi from "../services/getDataFromOsMapi";
+
 export function locationsGenerator(data) {
   const locations = [];
   data.forEach(obj => {
@@ -8,13 +10,20 @@ export function locationsGenerator(data) {
   return locations; 
 }
 
-
+//quizá esta función es muy pesada...
+// export function coordinatesGenerator(locations) {
+//   const coordinates = [];
+//   locations.forEach((location) => {
+//     getDataFromOsMapi(location);
+//   });
+//   return coordinates;
+//}// devuelve array de arrays con las coordenadas
 
 export const filterGenerator = (filterFields, firesData) => {
     const filterArray = [];
     filterFields.forEach(element => {
       const filterSet = [...new Set(firesData.map(obj => obj[element])) ];
-      filterArray.push({[element]: filterSet.filter(Boolean)}) // ESTO NO LO ENTIENDO
+      filterArray.push({[element]: filterSet.filter(Boolean)}) 
     });
   
     return filterArray;
@@ -37,7 +46,7 @@ export const filterGenerator = (filterFields, firesData) => {
     let filteredData = [];
   
     fires.forEach((fire) => {
-      let propControl = 0; // no entiendo para qué es esta constante
+      let propControl = 0; 
       Object.keys(fire).forEach((key) => {
           if(selectedFilters.hasOwnProperty(key) && (selectedFilters[key] !== fire[key] && selectedFilters[key] !== 'none')) {
             propControl++; 

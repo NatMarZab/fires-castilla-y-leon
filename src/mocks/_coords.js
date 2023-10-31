@@ -1,0 +1,22 @@
+export const mockedCoordinatesArray = [
+    // ZARZA (LA)
+    [41.2616, -4.77086],
+    // LASTRAS DE CUÉLLAR
+    [41.29722, -4.10750],
+    //VILLAVEDEO(MERINDAD DE CUESTA-URRIA)
+    [42.8567, -3.40649],
+    //TORDEHUMOS
+    [41.815, -5.16133],
+    //POZAL DE GALLINAS
+    [41.3185, -4.83632],
+    //TORNADIZOS DE ÁVILA
+    [40.6261, -4.61523],
+    //VILLAMOL
+    [42.427, -5.04688],
+    //VALDEARCOS (SANTAS MARTAS)
+    [42.4595, -5.38959],
+    //CUÉLLAR
+    [41.40278, -4.32000],
+    //COGECES DEL MONTE
+    [41.5111, -4.31623]
+];
