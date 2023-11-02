@@ -1,6 +1,7 @@
+@import '../core/variables';
 .footer {
     width: 100vw;
-    background-color: #ba283b;
+    background-color: $background;
     text-align: center;
     align-items: center;
     height: 50px;
@@ -10,5 +11,5 @@
     }
 }
 .small {
-    color: white;
+color: $footer-colortext;
 }

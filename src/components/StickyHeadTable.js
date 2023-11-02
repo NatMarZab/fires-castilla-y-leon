@@ -19,7 +19,7 @@ export default function StickyHeadTable({ data, columns }) {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);  //uy el +event no lo conozco
+    setRowsPerPage(+event.target.value); 
     setPage(0);
   };
 

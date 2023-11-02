@@ -18,7 +18,7 @@ function getInitialFiltersState() {
 }
 
 // Configurada para que sólo genere las coordenadas de 10 incendios, por problemas de baneo con la API generadora de coordenadas. 
-// Para mostrar todos los incendios, sustituir la línea 26 por la 25 y descomentarla.
+// Para mostrar todos los incendios, comentar la línea del bucle for y descomentar la anterior
 function coordinatesGenerator(locations) {
     const locations2 = locations;  
     const coordinates = [];
@@ -72,13 +72,17 @@ export function APIContextProvider({ children }) {
       setFilteredFires(filterFires(data.results, selectedFilters));
       return data.results;
     }
-    //Para data real, descomentar las líneas comentadas y comentar el actual return
     async function settingCoords() {
        const data = await fetchDataCyL(); 
-    //    data.length > 0 ? setLocations(locationsGenerator(filteredFires.length > 0 ? filteredFires : data)) : console.log("no se están seteando las locations"); 
        return data.length > 0 ? setMockedCoordinates(mockedCoordinatesArray) : console.log("no se está seteando el mockedCoordinates en apicontext.js");
-    //   return data.length > 0 ? setCoordinates(coordinatesGenerator(locations)) : console.log("no se están seteando las coordinates");
     }
+    
+    //Para data real, descomentar la siguiente función y comentar la anterior
+    // async function settingCoords() {
+    //     const data = await fetchDataCyL(); 
+    //     data.length > 0 ? setLocations(locationsGenerator(filteredFires.length > 0 ? filteredFires : data)) : console.log("no se están seteando las locations"); 
+    //     return data.length > 0 ? setCoordinates(coordinatesGenerator(locations)) : console.log("no se están seteando las coordinates");
+    // }
 
     fetchDataCyL();
     settingCoords();

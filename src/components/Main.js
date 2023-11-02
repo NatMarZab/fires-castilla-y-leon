@@ -6,8 +6,8 @@ import FiresMap from "./map/FiresMap";
 import { columnGenerator } from '../utils/utils';
 import { useAPI } from '../services/apiContext';
 
-function Main(props) {
-    const { filteredFires, fires, coordinates } = useAPI();
+function Main() {
+    const { filteredFires } = useAPI();
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
@@ -16,22 +16,20 @@ function Main(props) {
         }
     }, [filteredFires])
     
-    // NECESITO AQUÍ OTRO USEEFFECT PARA EL MAPA??
 
-    //quitar las props!!
   
 
     return (
      <>
       <main className="main">
-        <section className="section">
+        <section className="section first">
             <h2 className="subtitle">Tabla de incendios</h2>
             <div className="content">
                 <Filters  />
                 <StickyHeadTable data={filteredFires} columns={columns} />            
             </div>
         </section>
-        <section className="section">
+        <section className="section second">
             <h2 className="subtitle">Mapa de incendios</h2>
             <div className="content">
               <div id="map">

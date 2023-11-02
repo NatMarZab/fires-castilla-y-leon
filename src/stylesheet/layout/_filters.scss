@@ -1,0 +1,14 @@
+.filters {
+    max-width: 100%;
+    display: flex; 
+    flex-direction: row;
+    align-content: space-around;
+    margin-top: 10px;
+
+    @media (min-width: 736px) {
+        margin-top: 20px;
+    }
+    @media (min-width: 1024px) {
+        margin-top: 30px;
+    }
+}

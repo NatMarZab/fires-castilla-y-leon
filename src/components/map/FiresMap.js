@@ -10,6 +10,8 @@ import { useAPI } from '../../services/apiContext';
 
 
 function FiresMap() {
+ //Para real data susituir mockedCoordinates por Coordinates
+ 
  // const { coordinates } = useAPI();
   const { mockedCoordinates } = useAPI();
 
@@ -20,7 +22,6 @@ function FiresMap() {
 
   L.Marker.prototype.options.icon = DefaultIcon;
 
-//Para real data susituir mockedCoordinates por Coordinates
     return (
       <>  
         <MapContainer center={[41.754444, -4.781944]} zoom={7}> 

@@ -14,24 +14,6 @@ export default function Filter({ data }) {
   const storedFilterValue = selectedFilters[filterName];
   const valueSet = Object.values(data)[0];
 
-  const selectOptions = (valueSet) => {
-    const valuesControlArray = [];
-    return valueSet.map((value) => {
-      if(!valuesControlArray.includes(value)) {
-        valuesControlArray.push(value);
-        return  <MenuItem value={value} key={value}>{value}</MenuItem>
-      } else {
-        console.error("selectOption error");
-      }
-    });
-}
-
-// const selectOptions = (valueSet) => {
-//   return valueSet.map((value) => (
-//     <MenuItem value={value} key={value}>{value}</MenuItem>
-//    ));
-// }
-
   const handleChange = (event) => {
     setSelectedFilters({...selectedFilters, [filterName]: event.target.value})
   };
@@ -48,10 +30,9 @@ export default function Filter({ data }) {
           onChange={handleChange}
         >
            <MenuItem value="none" key="none">Ninguno</MenuItem>
-           {/* {valueSet.map((value) => (
+           {valueSet.map((value) => (
             <MenuItem value={value} key={value}>{value}</MenuItem>
-           ))} */}
-          {selectOptions(valueSet)}
+           ))}
         </Select>
       </FormControl>
     </Box>

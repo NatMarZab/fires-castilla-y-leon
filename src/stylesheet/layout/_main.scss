@@ -1,17 +1,12 @@
 @import "../core/variables";
 .main {
   height: 100vh;
-  // width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  border: solid grey;
-  // margin-left: 10px;
-  // margin-right:10px;
   
   &__subtitle {
-
     font-size: 14px;
   }
 }
@@ -22,19 +17,29 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: solid blue;
-    margin-top: 20px;
+
     @media (min-width: 736px) {
         height: 315px;
         width: 95%;
-        margin-top: 30px;
     }
-   @media (min-width: 1024px) {
-       height: 600px;
-       width: 95%;
-       margin-top: 35px;
+    @media (min-width: 1024px) {
+        height: 600px;
+        width: 95%;
     }
 }
+.first {
+  margin-top: 0px;
+}
+.second {
+  margin-top: 20px;
+  @media (min-width: 736px) {
+    margin-top: 30px;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 35px;
+  }
+}
+
 .content {
     height: 100%;
     display: flex;
