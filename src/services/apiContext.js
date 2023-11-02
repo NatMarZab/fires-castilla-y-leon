@@ -10,11 +10,11 @@ const filterFields = ['provincia', 'situacion_actual', 'causa_probable', 'nivel_
 function loadInitialFilters() {
   let initialFilters = {};
   filterFields.forEach(field => initialFilters[field] = "none");
-  localStorage.setItem('filters', JSON.stringify(initialFilters))
+  localStorage.setItem('filters', initialFilters)
 }
 function getInitialFiltersState() {
   const filters = localStorage.getItem('filters')
-  return filters ? JSON.parse(filters) : loadInitialFilters();
+  return filters ? filters : loadInitialFilters();
 }
 
 // Configurada para que sólo genere las coordenadas de 10 incendios, por problemas de baneo con la API generadora de coordenadas. 
