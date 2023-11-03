@@ -10,10 +10,8 @@ import { useAPI } from '../../services/apiContext';
 
 
 function FiresMap() {
- //Para real data susituir mockedCoordinates por Coordinates
- 
- // const { coordinates } = useAPI();
-  const { mockedCoordinates } = useAPI();
+
+ const { coordinates } = useAPI();
 
   let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -29,7 +27,7 @@ function FiresMap() {
             attribution='&copy; <a href="https://www.osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
           />
-        {mockedCoordinates.map((coordinate) => (
+        {coordinates.map((coordinate) => (
           <Marker
             position={coordinate}
             icon={DefaultIcon}

@@ -25,15 +25,15 @@ function Main() {
         <section className="section first">
             <h2 className="subtitle">Tabla de incendios</h2>
             <div className="content">
-                <Filters  />
-                <StickyHeadTable data={filteredFires} columns={columns} />            
+                <Filters />
+                <StickyHeadTable data={filteredFires} columns={columns} data-testid="tableMuI"/>            
             </div>
         </section>
         <section className="section second">
             <h2 className="subtitle">Mapa de incendios</h2>
             <div className="content">
-              <div id="map">
-                <FiresMap  />
+              <div id="map" >
+                <FiresMap data-testid="openStreetMap" />
               </div>                
             </div>
         </section>

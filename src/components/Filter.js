@@ -8,14 +8,15 @@ import Select from '@mui/material/Select';
 import { useAPI } from '../services/apiContext';
 
 export default function Filter({ data }) {
-  const { selectedFilters, setSelectedFilters } = useAPI();
+  const { selectedFilters, handleNewFilters } = useAPI();
   const filterName = Object.keys(data)[0]; 
+  const valueSet = Object.values(data)[0];
   const filterNameForLabel = filterName[0].toUpperCase() + filterName.slice(1).replace(/_/g, " ");
   const storedFilterValue = selectedFilters[filterName];
-  const valueSet = Object.values(data)[0];
 
   const handleChange = (event) => {
-    setSelectedFilters({...selectedFilters, [filterName]: event.target.value})
+    const newFilters = { ...selectedFilters, [filterName]:  event.target.value};
+    handleNewFilters(newFilters)
   };
 
   return (
@@ -31,7 +32,7 @@ export default function Filter({ data }) {
         >
            <MenuItem value="none" key="none">Ninguno</MenuItem>
            {valueSet.map((value) => (
-            <MenuItem value={value} key={value}>{value}</MenuItem>
+            <MenuItem value={value} key={value} data-testId="selectOption">{value}</MenuItem>
            ))}
         </Select>
       </FormControl>

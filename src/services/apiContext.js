@@ -10,11 +10,8 @@ const filterFields = ['provincia', 'situacion_actual', 'causa_probable', 'nivel_
 function loadInitialFilters() {
   let initialFilters = {};
   filterFields.forEach(field => initialFilters[field] = "none");
-  localStorage.setItem('filters', initialFilters)
-}
-function getInitialFiltersState() {
-  const filters = localStorage.getItem('filters')
-  return filters ? filters : loadInitialFilters();
+  localStorage.setItem('filters', JSON.stringify(initialFilters))
+  return initialFilters;
 }
 
 // Configurada para que sólo genere las coordenadas de 10 incendios, por problemas de baneo con la API generadora de coordenadas. 
@@ -50,16 +47,25 @@ function coordinatesGenerator(locations) {
       return coordinates;
 }
 
-// Para data real, descomentar líneas comentadas y comentar la de const [mockedCoordinates, setMockedCoordinates] = useState([]);
+// Para data real, descomentar líneas comentadas 
 export function APIContextProvider({ children }) {
   const [fires, setFires] = useState([]);
   const [fireCount, setFireCount] = useState(0);
   const [filtersWithOptions, setFiltersWithOptions] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState(getInitialFiltersState)
+  const [selectedFilters, setSelectedFilters] = useState({});
   const [filteredFires, setFilteredFires] = useState([]);
  // const [locations, setLocations] = useState([]);
-  //const [coordinates, setCoordinates] = useState([]); 
-  const [mockedCoordinates, setMockedCoordinates] = useState([]);
+  const [coordinates, setCoordinates] = useState([]); 
+
+  function getInitialFiltersState() {
+    const filters = localStorage.getItem('filters');
+    setSelectedFilters(filters ? JSON.parse(filters) : loadInitialFilters());
+  }
+
+  function handleNewFilters (newFilters) {
+    setSelectedFilters(newFilters);
+    localStorage.setItem('filters', JSON.stringify(newFilters))
+  }
 
   useEffect(() => {
     async function fetchDataCyL() {
@@ -74,7 +80,7 @@ export function APIContextProvider({ children }) {
     }
     async function settingCoords() {
        const data = await fetchDataCyL(); 
-       return data.length > 0 ? setMockedCoordinates(mockedCoordinatesArray) : console.log("no se está seteando el mockedCoordinates en apicontext.js");
+       return data.length > 0 ? setCoordinates(mockedCoordinatesArray) : console.log("no se está seteando el mockedCoordinates en apicontext.js");
     }
     
     //Para data real, descomentar la siguiente función y comentar la anterior
@@ -90,8 +96,8 @@ export function APIContextProvider({ children }) {
   }, [, selectedFilters]); 
 
   useEffect(() => {
-    localStorage.setItem('filters', JSON.stringify(selectedFilters))
-  }, [selectedFilters])
+    getInitialFiltersState();
+  }, []);
 
 
   return (
@@ -103,8 +109,8 @@ export function APIContextProvider({ children }) {
         filtersWithOptions,
         selectedFilters,
         setSelectedFilters,
-      //  coordinates,
-        mockedCoordinates,
+        handleNewFilters,
+        coordinates,
       }}
     >
       {children}

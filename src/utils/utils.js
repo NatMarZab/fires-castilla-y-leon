@@ -38,7 +38,8 @@ export const filterFires = (fires, selectedFilters) => {
   fires.forEach((fire) => {
     let propControl = 0; 
     Object.keys(fire).forEach((key) => {
-        if(selectedFilters.hasOwnProperty(key) && (selectedFilters[key] !== fire[key] && selectedFilters[key] !== 'none')) {
+      const selectedProp = Array.isArray(fire[key]) ? fire[key][0] : fire[key];
+      if(selectedFilters.hasOwnProperty(key) && (selectedFilters[key] !== selectedProp && selectedFilters[key] !== 'none')) {
           propControl++; 
         }
       });                 
